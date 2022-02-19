@@ -1,22 +1,125 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Bad Air Visualization</title>
+    <title>AQI Visualization</title>
     <meta charset="UTF-8">
     <link rel="icon" href="data:;base64,iVBORwOKGO=" />
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>    
-    <!-- Add HTML content, SVG drawing area, ... -->
-    <svg id="timeline"></svg>
-    <div id="tooltip"></div>
-
+<body style="background-color:#F5F5DC">    
     <!-- D3 bundle -->
     <script src="js/d3.v6.min.js"></script>
 
+    <h1 style="text-align:center"> Air Quality Index Visualization</h1>
+
+    <div style="width:auto; height:auto">
+
+        <div style="width:100%; height:5%; position:fixed; background:#FFFFFF; opacity: 0.6">
+         
+            <div style="width:40%; height:100%; float:left">
+                <input type="text" id="county_1" list="counties"
+                    style="text-align: center;display: block;margin: auto;">
+                <datalist id="counties">
+                </datalist>
+            </div>
+
+            <div style="width:20%; height:100%; float:left">
+                <input type="range" min="1980" max="2021" value="2021" id="yearRange"
+                    style="text-align: center;display: block;margin: auto;">
+                <p style="text-align: center;display: block;margin: auto;">Year: <span id="currentYear"></span></p>
+            </div>
+
+            <div style="width:40%; height:100%; float:right">
+                <input style="text-align: center;display: block;margin: auto;"
+                    type="text" id="county_2" list="counties">
+                <datalist id="counties">
+                </datalist>
+            </div>
+
+        </div>
+
+        <div style="width:100%; height:10%">
+            &nbsp;
+        </div>
+        <div style="width:100%; height:10%">
+            &nbsp;
+        </div>
+        <div style="width:100%; height:10%">
+            &nbsp;
+        </div>
+
+        <div style="width:100%; height:400px">
+            <div style="width:40%; height:100%; float:left">
+                <svg id="line_1a"></svg>
+            </div>
+            <div style="width:20%; height:400px; float:left">
+                <svg id="line_1_legend"></svg>
+            </div>
+            <div style="width:40%; height:400px; float:right">
+                <svg id="line_1b"></svg>
+            </div>
+        </div>
+
+        <div style="width:100%; height:50%">
+            <div style="width:40%; height:400px; float:left">
+                <svg id="line_2a"></svg>
+            </div>
+            <div style="width:20%; height:400px; float:left">
+                <svg id="line_2_legend"></svg>
+            </div>
+            <div style="width:40%; height:400px; float:right">
+                <svg id="line_2b"></svg>
+            </div>
+        </div>
+
+        <div style="width:100%; height:50%">
+            <div style="width:40%; height:400px; float:left">
+                <svg id="line_3a"></svg>
+            </div>
+            <div style="width:20%; height:400px; float:left">
+                <svg id="line_3_legend"></svg>
+            </div>
+            <div style="width:40%; height:400px; float:right">
+                <svg id="line_3b"></svg>
+            </div>
+        </div>
+
+        <div style="width:100%; height:50%">
+            <div style="width:40%; height:300px; float:left">
+                <svg id="pie_1a"></svg>
+            </div>
+            <div style="width:20%; height:300px; float:left">
+                <svg id="pie_1_legend"></svg>
+            </div>
+            <div style="width:40%; height:300px; float:right">
+                <svg id="pie_1b"></svg>
+            </div>
+        </div>
+
+        <div style="width:100%; height:50%">
+            <div style="width:40%; height:300px; float:left">
+                <svg id="pie_2a"></svg>
+            </div>
+            <div style="width:20%; height:300px; float:left">
+                <svg id="pie_2_legend"></svg>
+            </div>
+            <div style="width:40%; height:300px; float:right">
+                <svg id="pie_2b"></svg>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="tooltip"></div>
+    
     <!-- Our JS code - INCLUDING the new files-->
     <script src="js/main.js"></script>
-    <script src="js/line.js"></script>  
+    <script src="js/line.js"></script>
+    <script src="js/pie.js"></script> 
+
+    <script src="js/list.js"></script>
+    <script src="js/slider.js"></script>
+    <script src="js/legend.js"></script>
 
 </body>
 </html>
